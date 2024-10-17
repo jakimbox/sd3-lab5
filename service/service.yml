@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: servicio-orquesta-pod
+  name: service-pod
   labels:
-    app: servicio-orquesta
+    app: service
 spec:
   containers:
-    - name: servicio-orquesta-container
-      image: fredyball/microrquesta:latest
+    - name: service-container
+      image: gamberfox/lab5-service:latest
       ports:
         - containerPort: 8000
 
@@ -15,7 +15,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: servicio-orquesta-service
+  name: service-service
 spec:
   type: LoadBalancer
   ports:
@@ -23,4 +23,4 @@ spec:
       targetPort: 8000
       protocol: TCP
   selector:
-    app: servicio-orquesta
+    app: service
