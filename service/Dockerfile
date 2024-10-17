@@ -5,10 +5,10 @@ FROM tiangolo/uvicorn-gunicorn-fastapi:python3.8
 WORKDIR /app
 
 # Copia los archivos del proyecto al contenedor
-COPY ./orquestar.py /app
+COPY ./orquestrate.py /app
 
 # Instala las dependencias
 RUN pip install httpx
 
 # Comando para ejecutar la aplicación
-CMD ["uvicorn", "orquestar:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "orquestrate:app", "--host", "0.0.0.0", "--port", "8000"]
