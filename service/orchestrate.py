@@ -14,6 +14,7 @@ async def test():
 async def orchestrate():
     async with httpx.AsyncClient() as client:
         try:
+            ##"service-a" is the name of the service
             respuesta_a = await client.get("http://service-a/test",timeout=1.0)
             data_a = respuesta_a.json()
         except httpx.RequestError:

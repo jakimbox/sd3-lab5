@@ -1,0 +1,4 @@
+
+kubectl.exe apply -f service.yml
+
+kubectl.exe apply -f service-a.yml
