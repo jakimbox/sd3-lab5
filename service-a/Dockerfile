@@ -1,18 +1,21 @@
-# Usa una imagen base de Node.js
-FROM node:14
+# Usar una imagen de Maven para construir el proyecto
+FROM maven:3.8.1-jdk-11 AS build
 
-# Establece el directorio de trabajo
-WORKDIR /usr/src/app
+# Establecer el directorio de trabajo
+WORKDIR /build
 
-# Copia el archivo del proyecto al contenedor
-COPY ./servicio_a.js ./
+# Copiar el archivo pom.xml y los archivos de código fuente al contenedor
+COPY pom.xml .
+COPY src/ src/
 
-# Instala Express
-RUN npm init -y
-RUN npm install express
+# Construir el proyecto y crear el JAR
+RUN mvn clean package
 
-# Expone el puerto en el que se ejecutará el servicio
-EXPOSE 3001
+# Usar openjdk para ejecutar la aplicación
+FROM openjdk:11-jre-slim
 
-# Comando para ejecutar la aplicación
-CMD ["node", "servicio_a.js"]
+# Copiar el JAR construido desde la imagen de construcción
+COPY --from=build /build/target/besoscerezas-0.0.1-SNAPSHOT.jar /app.jar
+
+# Establecer el comando para ejecutar la aplicación
+CMD ["java", "-jar", "/app.jar"]
