@@ -5,7 +5,17 @@ https://github.com/fredyunivalle/microsk8s/blob/master/serviciob/serviciob.yml
 ## change to the dev branch to make changes
 
 
--service 1: Javier Humberto Grijalba
+-service a: Javier Humberto Grijalba
+
+-service b:
+
+-service c:
+
+-service d:
+
+-service e:
+
+-service f:
 
 -service 2:
 

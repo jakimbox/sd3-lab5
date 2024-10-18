@@ -44,11 +44,18 @@ async def orchestrate():
             data_f = respuesta_f.json()
         except httpx.RequestError:
             data_f = "The service F is not available"
+        
+        try:
+            respuesta_g = await client.get("http://service-g/test",timeout=1.0)
+            data_g = respuesta_g.json()
+        except httpx.RequestError:
+            data_g = "The service G is not available"
 
     return {"response_a": data_a,
             "response_b": data_b,
             "response_c": data_c,
             "response_d": data_d,
             "response_e": data_e,
-            "response_f": data_f
+            "response_f": data_f,
+            "response_g": data_g
             }
