@@ -23,5 +23,12 @@ docker build -t gamberfox/lab5-service:latest .
 
 docker push gamberfox/lab5-service:latest
 
-docker run gamberfox/lab5-service:latest
+docker run -p 8000:8000 gamberfox/lab5-service:latest
 
+
+cd service-a
+docker build -t gamberfox/lab5-service-a:latest .
+
+docker push gamberfox/lab5-service-a:latest
+
+docker run -p 8001:8080 gamberfox/lab5-service-a:latest
