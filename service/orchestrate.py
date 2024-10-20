@@ -60,3 +60,32 @@ async def orchestrate():
             "response_f": data_f,
             "response_g": data_g
             }
+
+## I will only call the service a, developed< by Javier Grijalba
+@app.get("/a")
+async def serviceA(
+    slaps: int = Query(None, description="slaps parameter for service B"),
+    slapper: str = Query(None, description="the one who slaps you")):
+    async with httpx.AsyncClient() as client:
+        try:
+            ##"service-a" is the name of the service
+            url = f"http://service-a/slap?slaps={slaps}&slapper={slapper}" if (slaps and slapper) else "http://service-a/slap"
+            respuesta_a = await client.get(url,timeout=1.0)
+            data_a = respuesta_a.json()
+        except httpx.RequestError:
+            data_a = "The service A is not available"
+
+        return {"response_a": data_a}
+    
+## I will only call the service b, developed by
+@app.get("/b")
+async def serviceB():
+    async with httpx.AsyncClient() as client:
+        try:
+            ##"service-b" is the name of the service
+            respuesta_b = await client.get("http://service-b/test",timeout=1.0)
+            data_b = respuesta_b.json()
+        except httpx.RequestError:
+            data_b = "The service B is not available"
+
+        return {"response_b": data_b}
