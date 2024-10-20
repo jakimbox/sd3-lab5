@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: service-a-container
-      image: gamberfox/lab5-service-a:2
+      image: gamberfox/lab5-service-a:latest
       ports:
         - containerPort: 8080
 
@@ -15,7 +15,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-a-service
+  name: service-a
 spec:
   type: ClusterIP
   ports:

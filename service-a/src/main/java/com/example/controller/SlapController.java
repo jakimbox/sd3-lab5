@@ -15,6 +15,14 @@ public class SlapController {
             @RequestParam(value = "slapper", defaultValue = "jon") String slapper
     ) {
         Map<String, String> besos = new HashMap<>();
+        if(slaps<=0){
+            besos.put("response","you did not get slapped");
+            return besos;
+        }
+        if(slaps==1){
+            besos.put("response","you got slapped once by "+slapper);
+            return besos;
+        }
         besos.put("response", "you received "
                 +slaps.toString()
                 +" slaps by "
