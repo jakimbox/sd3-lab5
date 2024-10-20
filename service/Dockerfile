@@ -8,7 +8,7 @@ WORKDIR /app
 COPY ./orchestrate.py /app
 
 # Instala las dependencias
-RUN pip install httpx
+RUN pip install fastapi  httpx
 
 EXPOSE 8000
 # Comando para ejecutar la aplicación
