@@ -8,7 +8,7 @@ https://github.com/fredyunivalle/microsk8s/blob/master/serviciob/serviciob.yml
 
 -service b:
 
--service c:
+-service c: Angie Melissa Ocoro Hurtado
 
 -service d:
 
