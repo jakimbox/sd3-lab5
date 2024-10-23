@@ -45,7 +45,6 @@ async def orchestrate():
             data_f = respuesta_f.text
         except httpx.RequestError:
             data_f = "The service F is not available"
-        
         try:
             respuesta_g = await client.get("http://service-g/test",timeout=1.0)
             data_g = respuesta_g.text
