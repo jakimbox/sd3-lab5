@@ -7,9 +7,9 @@ metadata:
 spec:
   containers:
     - name: service-f-container
-      image: criss1790/service-f:v1   #dockerhub
+      image: criss1790/service-f:v3   #dockerhub
       ports:
-        - containerPort: 6500
+        - containerPort: 3050
 ---
 apiVersion: v1
 kind: Service
@@ -19,7 +19,7 @@ spec:
   type: ClusterIP
   ports:
     - port: 80
-      targetPort: 6500
+      targetPort: 3050
       protocol: TCP
   selector:
     app: service-f
