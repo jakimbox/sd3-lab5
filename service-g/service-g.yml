@@ -1,32 +1,25 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: service-g
+  name: service-g-pod
+  labels:
+    app: service-g
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: service-g
-  template:
-    metadata:
-      labels:
-        app: service-g
-    spec:
-      containers:
-        - name: service-g
-          image: andersonalban/service-g:1.0 # Cambia esto con la imagen que subas a Docker Hub
-          ports:
-            - containerPort: 6000
+  containers:
+    - name: service-g-container
+      image: andersonalban/service-g:1.0 # Cambia esto con la imagen que subas a Docker Hub
+      ports:
+        - containerPort: 6000
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: service-g
 spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 6000
+      protocol: TCP
   selector:
     app: service-g
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 6000
-  type: ClusterIP
