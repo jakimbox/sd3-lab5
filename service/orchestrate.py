@@ -84,7 +84,8 @@ async def orchestrate():
             "response_g": data_g
             }
 
-## I will only call the service a, developed by Javier Grijalba
+
+## I will only call the service a, developed< by Javier Grijalba
 @app.get("/a")
 async def serviceA(
     slaps: int = Query(0, description="slaps parameter for service B"),
@@ -110,7 +111,6 @@ async def serviceB():
             data_b = respuesta_b.json()
         except httpx.RequestError:
             data_b = "The service B is not available"
-
         return {"response_b": data_b}
 
 
