@@ -44,8 +44,8 @@ async def orchestrate():
             data_a = "The service A is not available"
 
         try:
-            respuesta_b = await client.get("http://service-b/test",timeout=1.0)
-            data_b = respuesta_b.text
+            respuesta_b = await client.get("http://service-b/servicio-b",timeout=1.0)
+            data_b = respuesta_b.json()
         except httpx.RequestError:
             data_b = "The service B is not available"
         try:
@@ -64,8 +64,8 @@ async def orchestrate():
         except httpx.RequestError:
             data_e = "The service E is not available"
         try:
-            respuesta_f = await client.get("http://service-f/test",timeout=1.0)
-            data_f = respuesta_f.text
+            respuesta_f = await client.get("http://service-f/eventosasados",timeout=1.0)
+            data_f = respuesta_f.json()
         except httpx.RequestError:
             data_f = "The service F is not available"
         try:
@@ -107,7 +107,7 @@ async def serviceB():
     async with httpx.AsyncClient() as client:
         try:
             ##"service-b" is the name of the service
-            respuesta_b = await client.get("http://service-b/test",timeout=1.0)
+            respuesta_b = await client.get("http://service-b/servicio-b",timeout=1.0)
             data_b = respuesta_b.json()
         except httpx.RequestError:
             data_b = "The service B is not available"
@@ -138,6 +138,20 @@ async def serviceD():
         except httpx.HTTPStatusError:
             data_d = f"Error response {respuesta_d.status_code} from service D"
         return {"response_d": data_d}
+    
+@app.get("/f")
+async def serviceF():
+    async with httpx.AsyncClient() as client:
+        try:
+            ##"service-f is the name of the service
+            respuesta_f = await client.get("http://service-f/eventosasados",timeout=1.0)
+            # data_f = respuesta_f.json()
+            data_f = respuesta_f.json()
+        except httpx.RequestError as e:
+            data_f = f"HTTP error occurred: {e}"
+        except httpx.HTTPStatusError:
+            data_f = f"Error response {respuesta_f.status_code} from service F"
+        return {"response_f": data_f}
 
 
 @app.get("/g")

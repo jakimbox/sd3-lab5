@@ -1,4 +1,16 @@
-# ---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: service-f-pod
+  labels:
+    app: service-f
+spec:
+  containers:
+    - name: service-f-container
+      image: criss1790/service-f:v1   #dockerhub
+      ports:
+        - containerPort: 6500
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,7 +19,7 @@ spec:
   type: ClusterIP
   ports:
     - port: 80
-      targetPort: 8080
+      targetPort: 6500
       protocol: TCP
   selector:
     app: service-f
