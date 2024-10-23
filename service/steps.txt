@@ -19,12 +19,12 @@ docker run -p 8000:8000 gamberfox/lab5-service:1
 
 ########################
 
-docker build -t gamberfox/lab5-service:3 .
-docker build --no-cache -t gamberfox/lab5-service:3 .
+docker build -t gamberfox/lab5-service:11 .
+docker build --no-cache -t gamberfox/lab5-service:11 .
 
-docker push gamberfox/lab5-service:3
+docker push gamberfox/lab5-service:11
 
-docker run -p 8000:8000 gamberfox/lab5-service:latest
+docker run -p 8000:8000 gamberfox/lab5-service:1
 
 
 cd service-a
@@ -36,4 +36,5 @@ docker push gamberfox/lab5-service-a:latest
 docker run -p 8001:8080 gamberfox/lab5-service-a:latest
 
 
-kubectl.exe apply -f service.yml
+kubectl.exe apply -f service\service.yml
+kubectl.exe apply -f service-a\service-a.yml

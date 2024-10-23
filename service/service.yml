@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: service-container
-      image: gamberfox/lab5-service:3
+      image: gamberfox/lab5-service:11
       ports:
         - containerPort: 8000
 

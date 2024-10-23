@@ -10,7 +10,6 @@ spec:
       image: gamberfox/lab5-service-a:latest
       ports:
         - containerPort: 8080
-
 ---
 apiVersion: v1
 kind: Service
