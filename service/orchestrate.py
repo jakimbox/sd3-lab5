@@ -113,6 +113,7 @@ async def serviceB():
             data_b = "The service B is not available"
         return {"response_b": data_b}
 
+<<<<<<< HEAD
 @app.get("/c")
 async def serviceC():
     async with httpx.AsyncClient() as client:
@@ -125,6 +126,21 @@ async def serviceC():
         except httpx.HTTPStatusError:
             data_c = f"Error response {respuesta_c.status_code} from service C"
         return {"response_c": data_c}
+=======
+@app.get("/d")
+async def serviceD():
+    async with httpx.AsyncClient() as client:
+        try:
+            ##"service-d" is the name of the service
+            respuesta_d = await client.get("http://service-d/test",timeout=1.0)
+            # data_d = respuesta_d.text
+            data_d = respuesta_d.text
+        except httpx.RequestError as e:
+            data_d = f"HTTP error occurred: {e}"
+        except httpx.HTTPStatusError:
+            data_d = f"Error response {respuesta_d.status_code} from service D"
+        return {"response_D": data_d}
+>>>>>>> 0f31f8bbd24685548fedd6ada8bd07760ed1b821
 
 @app.get("/g")
 async def serviceG():
