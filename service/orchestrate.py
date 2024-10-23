@@ -9,6 +9,29 @@ async def test():
         "response":"this is a simple test of the orchestrator"
     }
 
+@app.get("/custom")
+async def custom(
+    path: str = Query("default", description="slaps parameter for service B")
+):
+    if(path=="default"):
+        return{
+            "response":"this is a simple test of the custom path"
+        }
+    else:
+        async with httpx.AsyncClient() as client:
+            try:
+                response = await client.get(path,timeout=1.0)
+                content_type = response.headers.get("Content-Type")
+                if "application/json" in content_type:
+                    data = response.json()  # Parse as JSON
+                else:
+                    data=response.text# Return as plain text
+            except httpx.RequestError:
+                data = "The path is not available"
+            return{
+                "data":data
+            }
+
 # Endpoint en Servicio Orquetador para iniciar la orquestación
 @app.get("/orchestrate")
 async def orchestrate():

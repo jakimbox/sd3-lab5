@@ -19,10 +19,10 @@ docker run -p 8000:8000 gamberfox/lab5-service:1
 
 ########################
 
-docker build -t gamberfox/lab5-service:10 .
-docker build --no-cache -t gamberfox/lab5-service:10 .
+docker build -t gamberfox/lab5-service:11 .
+docker build --no-cache -t gamberfox/lab5-service:11 .
 
-docker push gamberfox/lab5-service:10
+docker push gamberfox/lab5-service:11
 
 docker run -p 8000:8000 gamberfox/lab5-service:1
 
